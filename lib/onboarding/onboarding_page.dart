@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chat_app_3/onboarding/login_page.dart';
 import 'package:chat_app_3/onboarding/sign_up_page.dart';
 import 'package:chat_app_3/widgets/onboarding_divider.dart';
+import 'package:chat_app_3/widgets/social_media_bar.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -24,26 +26,20 @@ class OnboardingPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset('assets/icons/icon_app.png'),
-                  Text(
+                  AutoSizeText(
                     'Connect friends easily & quickly',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 68,
                       fontWeight: FontWeight.w500,
+                      fontSize: 68,
                     ),
+                    maxLines: 3,
                   ),
                   Text(
                     'Our chat app is the perfect way to stay connected with friends and family.',
                     style: TextStyle(fontSize: 16, color: Color(0xFFB9C1BE)),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset('assets/icons/icon_facebook.png'),
-                      Image.asset('assets/icons/icon_google.png'),
-                      Image.asset('assets/icons/icon_apple.png'),
-                    ],
-                  ),
+                  SocialMediaBar(),
                   OnboardingDivider(),
                   SizedBox(
                     width: double.infinity,
