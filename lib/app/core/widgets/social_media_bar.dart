@@ -1,4 +1,4 @@
-import 'package:chat_app_3/widgets/social_media_button.dart';
+import 'package:chat_app_3/app/core/widgets/social_media_button.dart';
 import 'package:flutter/material.dart';
 
 class SocialMediaBar extends StatelessWidget {

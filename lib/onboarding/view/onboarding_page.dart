@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:chat_app_3/onboarding/login_page.dart';
-import 'package:chat_app_3/onboarding/sign_up_page.dart';
-import 'package:chat_app_3/widgets/onboarding_divider.dart';
-import 'package:chat_app_3/widgets/social_media_bar.dart';
+import 'package:chat_app_3/login/view/login_page.dart';
+import 'package:chat_app_3/sign_up/view/sign_up_page.dart';
+import 'package:chat_app_3/app/core/widgets/onboarding_divider.dart';
+import 'package:chat_app_3/app/core/widgets/social_media_bar.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {

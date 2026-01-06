@@ -1,5 +1,5 @@
-import 'package:chat_app_3/widgets/onboarding_divider.dart';
-import 'package:chat_app_3/widgets/social_media_bar.dart';
+import 'package:chat_app_3/app/core/widgets/onboarding_divider.dart';
+import 'package:chat_app_3/app/core/widgets/social_media_bar.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -63,25 +63,9 @@ class LoginPage extends StatelessWidget {
                       dividerColor: Color(0xFFCDD1D0),
                     ),
                     TextFormField(
-                      cursorColor: Color(0xFF24786D),
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        labelText: 'Your email',
-                        labelStyle: TextStyle(
-                          color: Color(0xFF24786D),
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-                        ),
-                      ),
+                      decoration: InputDecoration(labelText: 'Your email'),
+
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email';
@@ -100,25 +84,8 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
-                      cursorColor: Color(0xFF24786D),
                       obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        labelStyle: TextStyle(
-                          color: Color(0xFF24786D),
-                          fontWeight: FontWeight.normal,
-                          fontSize: 14,
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFFD6E4E0)),
-                        ),
-                      ),
+                      decoration: InputDecoration(labelText: 'Password'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';

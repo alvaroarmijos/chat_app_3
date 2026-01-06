@@ -1,4 +1,5 @@
-import 'package:chat_app_3/onboarding/onboarding_page.dart';
+import 'package:chat_app_3/app/core/ui/theme.dart';
+import 'package:chat_app_3/onboarding/view/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -8,6 +9,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Material App', home: OnboardingPage());
+    return MaterialApp(
+      theme: AppTheme.light,
+      title: 'Material App',
+      home: OnboardingPage(),
+    );
   }
 }
