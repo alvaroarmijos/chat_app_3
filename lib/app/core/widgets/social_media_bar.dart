@@ -1,3 +1,4 @@
+import 'package:chat_app_3/app/core/ui/app_drawables.dart';
 import 'package:chat_app_3/app/core/widgets/social_media_button.dart';
 import 'package:flutter/material.dart';
 
@@ -12,19 +13,19 @@ class SocialMediaBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SocialMediaButton(
-          iconPath: 'assets/icons/icon_facebook.png',
+          iconPath: AppDrawables.iconFacebook,
           onTap: () {
             print('Facebook button tapped');
           },
         ),
         SocialMediaButton(
-          iconPath: 'assets/icons/icon_google.png',
+          iconPath: AppDrawables.iconGoogle,
           onTap: () {
             print('Google button tapped');
           },
         ),
         SocialMediaButton(
-          iconPath: 'assets/icons/icon_apple.png',
+          iconPath: AppDrawables.iconApple,
           onTap: () {
             print('Apple button tapped');
           },

@@ -1,3 +1,4 @@
+import 'package:chat_app_3/app/utils/validators.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -59,39 +60,19 @@ class SignUpPage extends StatelessWidget {
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(labelText: 'Your name'),
+                      // TODO: agregar validación para el nombre
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(labelText: 'Your email'),
-
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-
-                        final emailRegex = RegExp(
-                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                        );
-
-                        if (!emailRegex.hasMatch(value)) {
-                          return 'Please enter a valid email address';
-                        }
-
-                        return null;
-                      },
+                      validator: Validators.validateEmail,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(labelText: 'Password'),
                       validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        if (value.length < 8) {
-                          return 'Password must be at least 8 characters long';
-                        }
                         return null;
                       },
                     ),
@@ -101,15 +82,7 @@ class SignUpPage extends StatelessWidget {
                       decoration: InputDecoration(
                         labelText: 'Confirm Password',
                       ),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        if (value.length < 8) {
-                          return 'Password must be at least 8 characters long';
-                        }
-                        return null;
-                      },
+                      validator: Validators.validatePassword,
                     ),
                   ],
                 ),
@@ -122,7 +95,6 @@ class SignUpPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       final isValid = formKey.currentState?.validate();
-
                       if (isValid ?? false) {
                         print('Formulario válido');
                       } else {

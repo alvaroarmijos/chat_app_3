@@ -1,8 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:chat_app_3/app/core/ui/ui.dart';
 import 'package:chat_app_3/app/core/widgets/onboarding_divider.dart';
 import 'package:chat_app_3/app/core/widgets/social_media_bar.dart';
-import 'package:chat_app_3/login/view/login_page.dart';
-import 'package:chat_app_3/sign_up/view/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -15,7 +14,7 @@ class OnboardingPage extends StatelessWidget {
       body: Stack(
         children: [
           Image.asset(
-            'assets/images/background.png',
+            AppDrawables.background,
             width: double.infinity,
             fit: BoxFit.cover,
           ),
@@ -25,7 +24,7 @@ class OnboardingPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset('assets/icons/icon_app.png'),
+                  Image.asset(AppDrawables.iconApp),
                   AutoSizeText(
                     'Connect friends easily & quickly',
                     style: TextStyle(
@@ -37,7 +36,7 @@ class OnboardingPage extends StatelessWidget {
                   ),
                   Text(
                     'Our chat app is the perfect way to stay connected with friends and family.',
-                    style: TextStyle(fontSize: 16, color: Color(0xFFB9C1BE)),
+                    style: TextStyle(fontSize: 16, color: AppColors.textColor),
                   ),
                   SocialMediaBar(),
                   OnboardingDivider(),
@@ -54,12 +53,7 @@ class OnboardingPage extends StatelessWidget {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUpPage(),
-                            ),
-                          );
+                          Navigator.pushNamed(context, AppNavigator.signUp);
                         },
                         child: Text('Sign up withn mail'),
                       ),
@@ -89,17 +83,14 @@ class OnboardingPage extends StatelessWidget {
                   // ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
-                      );
+                      Navigator.pushNamed(context, AppNavigator.login);
                     },
                     child: RichText(
                       text: TextSpan(
                         text: 'Existing account? ',
                         style: TextStyle(
                           fontSize: 14,
-                          color: Color(0xFFB9C1BE),
+                          color: AppColors.textColor,
                         ),
                         children: [
                           TextSpan(

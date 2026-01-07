@@ -1,5 +1,7 @@
-import 'package:chat_app_3/app/core/ui/theme.dart';
+import 'package:chat_app_3/app/core/ui/ui.dart';
+import 'package:chat_app_3/login/view/login_page.dart';
 import 'package:chat_app_3/onboarding/view/onboarding_page.dart';
+import 'package:chat_app_3/sign_up/view/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -12,7 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.light,
       title: 'Material App',
-      home: OnboardingPage(),
+      routes: {
+        AppNavigator.main: (context) => const OnboardingPage(),
+        AppNavigator.login: (context) => const LoginPage(),
+        AppNavigator.signUp: (context) => const SignUpPage(),
+      },
     );
   }
 }
