@@ -1,5 +1,7 @@
 import 'package:chat_app_3/app/utils/validators.dart';
+import 'package:chat_app_3/onboarding/sign_up/cubit/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -7,6 +9,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
+    final signUpCubit = context.read<SignUpCubit>();
 
     return Scaffold(
       appBar: AppBar(),
@@ -60,6 +63,7 @@ class SignUpPage extends StatelessWidget {
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(labelText: 'Your name'),
+                      onChanged: signUpCubit.onNameChanged,
                       // TODO: agregar validación para el nombre
                     ),
                     const SizedBox(height: 16),
@@ -67,22 +71,33 @@ class SignUpPage extends StatelessWidget {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(labelText: 'Your email'),
                       validator: Validators.validateEmail,
+                      onChanged: signUpCubit.onEmailChanged,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
                       obscureText: true,
                       decoration: InputDecoration(labelText: 'Password'),
+                      onChanged: signUpCubit.onPasswordChanged,
                       validator: (value) {
                         return null;
                       },
                     ),
                     const SizedBox(height: 16),
-                    TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: 'Confirm Password',
-                      ),
-                      validator: Validators.validatePassword,
+                    BlocBuilder<SignUpCubit, SignUpState>(
+                      builder: (context, state) {
+                        return TextFormField(
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            labelText: 'Confirm Password',
+                          ),
+                          validator: Validators.validatePassword,
+                          onChanged: signUpCubit.onConfirmPasswordChanged,
+                          forceErrorText:
+                              state.password != state.confirmPassword
+                              ? 'Passwords do not match'
+                              : null,
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -96,9 +111,9 @@ class SignUpPage extends StatelessWidget {
                     onPressed: () {
                       final isValid = formKey.currentState?.validate();
                       if (isValid ?? false) {
-                        print('Formulario válido');
+                        signUpCubit.signUp();
                       } else {
-                        print('Formulario inválido');
+                        print('Formulario no válido');
                       }
                     },
                     child: Text('Create an account'),
