@@ -105,13 +105,6 @@ class LoginPage extends StatelessWidget {
                   color: Colors.white,
                   width: double.infinity,
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF24786D),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
                     onPressed: () {
                       final isValid = formKey.currentState?.validate();
 

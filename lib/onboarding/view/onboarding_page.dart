@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:chat_app_3/login/view/login_page.dart';
-import 'package:chat_app_3/sign_up/view/sign_up_page.dart';
 import 'package:chat_app_3/app/core/widgets/onboarding_divider.dart';
 import 'package:chat_app_3/app/core/widgets/social_media_bar.dart';
+import 'package:chat_app_3/login/view/login_page.dart';
+import 'package:chat_app_3/sign_up/view/sign_up_page.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -43,20 +43,26 @@ class OnboardingPage extends StatelessWidget {
                   OnboardingDivider(),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                    child: ElevatedButtonTheme(
+                      data: ElevatedButtonThemeData(
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                         ),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        );
-                      },
-                      child: Text('Sign up withn mail'),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpPage(),
+                            ),
+                          );
+                        },
+                        child: Text('Sign up withn mail'),
+                      ),
                     ),
                   ),
                   // Row(
