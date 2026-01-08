@@ -1,9 +1,13 @@
+import 'package:chat_app_3/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpState());
+
+  // Implementación temporal
+  final authRepository = AuthRepositoryFirebaseImpl();
 
   void onNameChanged(String? name) {
     emit(state.copyWith(name: name));
@@ -28,14 +32,12 @@ class SignUpCubit extends Cubit<SignUpState> {
     print("Password: ${state.password}");
     print("Confirm Password: ${state.confirmPassword}");
 
-    //final response = await authRepository.signUp();
+    final name = state.name;
+    final email = state.email;
+    final password = state.password;
 
-    // if (response.isSuccess) {
-    //   emit(state.copyWith(status: SignUpStatus.success));
-    // } else {
-    //   emit(state.copyWith(status: SignUpStatus.failure, errorMessage: response.errorMessage));
-    // }
+    if (name == null || email == null || password == null) return;
 
-    // Enviar esta información al backend o servicio de autenticación (Firebase)
+    authRepository.signUp(name, email, password);
   }
 }

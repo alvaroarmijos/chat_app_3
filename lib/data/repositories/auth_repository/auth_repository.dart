@@ -3,6 +3,7 @@ abstract class AuthRepository {
   Future<void> signUp(String name, String email, String password);
 
   // metodo para loguear usuario
+  Future<void> login(String email, String password);
 
   // metodo para cerrar sesion
 
