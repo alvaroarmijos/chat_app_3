@@ -28,6 +28,14 @@ class SignUpCubit extends Cubit<SignUpState> {
     print("Password: ${state.password}");
     print("Confirm Password: ${state.confirmPassword}");
 
+    //final response = await authRepository.signUp();
+
+    // if (response.isSuccess) {
+    //   emit(state.copyWith(status: SignUpStatus.success));
+    // } else {
+    //   emit(state.copyWith(status: SignUpStatus.failure, errorMessage: response.errorMessage));
+    // }
+
     // Enviar esta información al backend o servicio de autenticación (Firebase)
   }
 }
