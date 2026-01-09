@@ -9,4 +9,10 @@ class AuthRepositoryFirebaseImpl implements AuthRepository {
       password: password,
     );
   }
+
+  @override
+  Future<void> login(String email, String password) {
+    // TODO: implement login
+    throw UnimplementedError();
+  }
 }
