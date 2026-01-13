@@ -9,6 +9,18 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => SignUpCubit(),
+      child: const SignUpView(),
+    );
+  }
+}
+
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     final signUpCubit = context.read<SignUpCubit>();
 

@@ -2,10 +2,24 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:chat_app_3/app/core/ui/ui.dart';
 import 'package:chat_app_3/app/core/widgets/onboarding_divider.dart';
 import 'package:chat_app_3/app/core/widgets/social_media_bar.dart';
+import 'package:chat_app_3/onboarding/cubit/onboarding_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => OnboardingCubit(),
+      child: const OnboardingView(),
+    );
+  }
+}
+
+class OnboardingView extends StatelessWidget {
+  const OnboardingView({super.key});
 
   @override
   Widget build(BuildContext context) {

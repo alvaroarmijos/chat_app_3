@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 abstract class AuthRepository {
   // metodo para registrar usuario
   Future<void> signUp(String name, String email, String password);
@@ -8,8 +10,10 @@ abstract class AuthRepository {
   // metodo para cerrar sesion
 
   // metodo para obtener el usuario actual
+  Stream<User?> get currentUser;
 
   // metodo para loguear con Google
+  Future<void> signInWithGoogle();
 
   // metodo para loguear con Facebook
 
