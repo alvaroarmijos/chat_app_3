@@ -1,4 +1,4 @@
-import 'package:chat_app_3/home/widgets/chat_item.dart';
+import 'package:chat_app_3/data/repositories/contacts_repository/contacts_repository_firebase_impl.dart';
 import 'package:flutter/material.dart';
 
 class Chats extends StatelessWidget {
@@ -29,11 +29,17 @@ class Chats extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          Flexible(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) => const ChatItem(),
-            ),
+          // Flexible(
+          //   child: ListView.builder(
+          //     itemCount: 5,
+          //     itemBuilder: (context, index) => const ChatItem(),
+          //   ),
+          // ),
+          ElevatedButton(
+            onPressed: () {
+              ContactsRepositoryFirebaseImpl().getContacts();
+            },
+            child: Text('Get contacts'),
           ),
         ],
       ),

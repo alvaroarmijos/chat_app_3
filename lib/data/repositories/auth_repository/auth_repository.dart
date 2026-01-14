@@ -8,6 +8,7 @@ abstract class AuthRepository {
   Future<void> login(String email, String password);
 
   // metodo para cerrar sesion
+  Future<void> logout();
 
   // metodo para obtener el usuario actual
   Stream<User?> get currentUser;

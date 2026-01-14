@@ -18,12 +18,16 @@ class AuthHandler extends StatelessWidget {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         return switch (state) {
-          AuthStateLoggedIn() => navigatorKey.currentState?.pushNamed(
-            AppNavigator.home,
-          ),
-          AuthStateLoggedOut() => navigatorKey.currentState?.pushNamed(
-            AppNavigator.main,
-          ),
+          AuthStateLoggedIn() =>
+            navigatorKey.currentState?.pushNamedAndRemoveUntil(
+              AppNavigator.home,
+              (route) => false,
+            ),
+          AuthStateLoggedOut() =>
+            navigatorKey.currentState?.pushNamedAndRemoveUntil(
+              AppNavigator.main,
+              (route) => false,
+            ),
           AuthStateLoading() || AuthStateUknown() => print('null'),
         };
       },
