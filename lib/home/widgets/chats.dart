@@ -1,5 +1,7 @@
-import 'package:chat_app_3/data/repositories/contacts_repository/contacts_repository_firebase_impl.dart';
+import 'package:chat_app_3/home/bloc/home_bloc.dart';
+import 'package:chat_app_3/home/widgets/chat_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Chats extends StatelessWidget {
   const Chats({super.key});
@@ -29,17 +31,18 @@ class Chats extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          // Flexible(
-          //   child: ListView.builder(
-          //     itemCount: 5,
-          //     itemBuilder: (context, index) => const ChatItem(),
-          //   ),
-          // ),
-          ElevatedButton(
-            onPressed: () {
-              ContactsRepositoryFirebaseImpl().getContacts();
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              final contacts = state.contacts;
+
+              return Flexible(
+                child: ListView.builder(
+                  itemCount: contacts.length,
+                  itemBuilder: (context, index) =>
+                      ChatItem(contact: contacts[index]),
+                ),
+              );
             },
-            child: Text('Get contacts'),
           ),
         ],
       ),

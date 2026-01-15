@@ -1,12 +1,40 @@
+import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
+import 'package:chat_app_3/home/bloc/home_bloc.dart';
 import 'package:chat_app_3/home/widgets/chats.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HomeBloc()..add(GetContactsEvent()),
+      child: HomeView(),
+    );
+  }
+}
+
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<HomeBloc>().add(UpdateUserStatus(status: true));
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final user = context.read<AuthBloc>().state.getUser();
+
     return Scaffold(
       backgroundColor: Colors.black,
       // appBar: AppBar(
@@ -30,10 +58,8 @@ class HomePage extends StatelessWidget {
                   'Home',
                   style: textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
-                const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    'https://photo-cdn2.icons8.com/OCUxgrB3qzbk934tC2nTmEl7VlvF-7f3LJ1fQ9HFuZA/rs:fit:576:384/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5l/eHRlcm5hbC9hMmE0/Mi82ODE1ODM3MTQ5/YTI0ZmE2YmEzYzBm/Njg0MDMyZjJlMy5q/cGc.webp',
-                  ),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(user?.photoURL ?? ''),
                 ),
               ],
             ),

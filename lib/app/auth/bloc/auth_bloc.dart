@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:chat_app_3/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_event.dart';
@@ -24,7 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         if (user == null) {
           return AuthStateLoggedOut();
         } else {
-          return AuthStateLoggedIn();
+          return AuthStateLoggedIn(user: user);
         }
       },
     );
