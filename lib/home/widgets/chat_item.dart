@@ -1,4 +1,5 @@
 import 'package:chat_app_3/app/core/ui/ui.dart';
+import 'package:chat_app_3/app/core/widgets/chat_avatar.dart';
 import 'package:chat_app_3/domain/models/contact.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +18,9 @@ class ChatItem extends StatelessWidget {
     return ListTile(
       onTap: () {
         // Agregar la opción para navegar a la lista de mensajes
+        Navigator.pushNamed(context, AppNavigator.chat, arguments: contact);
       },
-      leading: CircleAvatar(backgroundImage: NetworkImage(contact.photoUrl)),
+      leading: ChatAvatar(name: contact.name, photoUrl: contact.photoUrl),
       title: Text(contact.name),
       subtitle: Text(
         currentStatus.$1,

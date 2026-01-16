@@ -15,6 +15,7 @@ class ContactsRepositoryFirebaseImpl implements ContactsRepository {
               name: element['name'],
               photoUrl: element['photoUrl'],
               status: element['status'],
+              id: element['id'],
             );
           }).toList() ??
           [];

@@ -1,5 +1,6 @@
 import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
 import 'package:chat_app_3/app/auth/view/auth_handler.dart';
+import 'package:chat_app_3/chat/view/chat_page.dart';
 import 'package:chat_app_3/app/core/ui/ui.dart';
 import 'package:chat_app_3/firebase_options.dart';
 import 'package:chat_app_3/home/view/home_page.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
             AppNavigator.login: (context) => const LoginPage(),
             AppNavigator.signUp: (context) => const SignUpPage(),
             AppNavigator.home: (context) => const HomePage(),
+            AppNavigator.chat: (context) => const ChatPage(),
           },
         ),
       ),

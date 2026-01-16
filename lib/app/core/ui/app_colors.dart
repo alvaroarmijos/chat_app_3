@@ -7,4 +7,6 @@ class AppColors {
   static const Color grey = Color(0xFFB9C1BE);
   static const Color darkGrey = Color(0xFF797C7B);
   static const Color lightGrey = Color(0xFFD6E4E0);
+  static const Color greyForm = Color(0xFFF3F6F6);
+  static const Color messageGrey = Color(0xFFF2F7FB);
 }

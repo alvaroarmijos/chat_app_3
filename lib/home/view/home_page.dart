@@ -1,4 +1,5 @@
 import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
+import 'package:chat_app_3/app/core/widgets/chat_avatar.dart';
 import 'package:chat_app_3/home/bloc/home_bloc.dart';
 import 'package:chat_app_3/home/widgets/chats.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +59,9 @@ class _HomeViewState extends State<HomeView> {
                   'Home',
                   style: textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(user?.photoURL ?? ''),
+                ChatAvatar(
+                  name: user?.displayName ?? '',
+                  photoUrl: user?.photoURL,
                 ),
               ],
             ),
