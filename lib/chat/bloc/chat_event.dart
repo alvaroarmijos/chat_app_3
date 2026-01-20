@@ -9,3 +9,10 @@ class SendMessageEvent extends ChatEvent {
 
   SendMessageEvent({required this.message, required this.contactId});
 }
+
+// Evento para obtener los mensajes de un chat específico
+class GetMessagesEvent extends ChatEvent {
+  final String contactId;
+
+  GetMessagesEvent({required this.contactId});
+}

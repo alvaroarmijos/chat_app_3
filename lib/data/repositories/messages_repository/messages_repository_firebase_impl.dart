@@ -1,4 +1,5 @@
 import 'package:chat_app_3/data/repositories/messages_repository/messages_repository.dart';
+import 'package:chat_app_3/domain/models/message.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class MessagesRepositoryFirebaseImpl implements MessagesRepository {
@@ -15,6 +16,23 @@ class MessagesRepositoryFirebaseImpl implements MessagesRepository {
       'message': message,
       'messageDate': date,
       'sentBy': sentBy,
+    });
+  }
+
+  @override
+  Stream<List<Message>> getMessages(String chatId) {
+    return _firebaseDatabase.ref('chats').child(chatId).onValue.map((event) {
+      final value = event.snapshot.value as Map?;
+      final messages =
+          value?.values.map((element) {
+            return Message(
+              message: element['message'],
+              date: DateTime.parse(element['messageDate']),
+              sentBy: element['sentBy'],
+            );
+          }).toList() ??
+          [];
+      return messages..sort((a, b) => a.date.compareTo(b.date));
     });
   }
 }

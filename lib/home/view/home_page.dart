@@ -1,4 +1,5 @@
 import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
+import 'package:chat_app_3/app/core/ui/ui.dart';
 import 'package:chat_app_3/app/core/widgets/chat_avatar.dart';
 import 'package:chat_app_3/home/bloc/home_bloc.dart';
 import 'package:chat_app_3/home/widgets/chats.dart';
@@ -59,9 +60,13 @@ class _HomeViewState extends State<HomeView> {
                   'Home',
                   style: textTheme.titleLarge?.copyWith(color: Colors.white),
                 ),
-                ChatAvatar(
-                  name: user?.displayName ?? '',
-                  photoUrl: user?.photoURL,
+                GestureDetector(
+                  onTap: () =>
+                      Navigator.pushNamed(context, AppNavigator.profile),
+                  child: ChatAvatar(
+                    name: user?.displayName ?? '',
+                    photoUrl: user?.photoURL,
+                  ),
                 ),
               ],
             ),

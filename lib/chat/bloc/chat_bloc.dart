@@ -11,6 +11,7 @@ part 'chat_state.dart';
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc() : super(ChatState()) {
     on<SendMessageEvent>(_onSendMessageEvent);
+    on<GetMessagesEvent>(_onGetMessagesEvent);
   }
 
   final messagesRepository = MessagesRepositoryFirebaseImpl();
@@ -29,7 +30,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       _getChatId(user.uid, event.contactId),
       event.message,
       date,
-      event.contactId,
+      user.uid,
     );
   }
 
@@ -37,5 +38,22 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     final chatIds = [currentUserId, contactId]..sort();
     // chatIds.sort();
     return '${chatIds[0]}_${chatIds[1]}';
+  }
+
+  FutureOr<void> _onGetMessagesEvent(
+    GetMessagesEvent event,
+    Emitter<ChatState> emit,
+  ) async {
+    final user = await authRepository.currentUser.first;
+    if (user == null) return;
+
+    final chatId = _getChatId(user.uid, event.contactId);
+
+    return emit.forEach(
+      messagesRepository.getMessages(chatId),
+      onData: (messages) {
+        return ChatState(messages: messages);
+      },
+    );
   }
 }

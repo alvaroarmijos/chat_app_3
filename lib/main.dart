@@ -1,12 +1,13 @@
 import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
 import 'package:chat_app_3/app/auth/view/auth_handler.dart';
-import 'package:chat_app_3/chat/view/chat_page.dart';
 import 'package:chat_app_3/app/core/ui/ui.dart';
+import 'package:chat_app_3/chat/view/chat_page.dart';
 import 'package:chat_app_3/firebase_options.dart';
 import 'package:chat_app_3/home/view/home_page.dart';
 import 'package:chat_app_3/login/view/login_page.dart';
 import 'package:chat_app_3/onboarding/sign_up/view/sign_up_page.dart';
 import 'package:chat_app_3/onboarding/view/onboarding_page.dart';
+import 'package:chat_app_3/profile/view/profile_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
             AppNavigator.signUp: (context) => const SignUpPage(),
             AppNavigator.home: (context) => const HomePage(),
             AppNavigator.chat: (context) => const ChatPage(),
+            AppNavigator.profile: (context) => ProfilePage(),
           },
         ),
       ),

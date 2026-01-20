@@ -1,6 +1,7 @@
 import 'package:chat_app_3/app/core/ui/app_colors.dart';
 import 'package:chat_app_3/app/core/widgets/chat_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MessageTile extends StatelessWidget {
   const MessageTile({
@@ -22,8 +23,7 @@ class MessageTile extends StatelessWidget {
     final color = mySelf ? AppColors.primary : AppColors.messageGrey;
     final colorText = mySelf ? Colors.white : Colors.black;
     final textTheme = Theme.of(context).textTheme;
-    // final dateFormat = DateFormat.jm().format(date);
-    const dateFormat = '1:46';
+    final dateFormat = DateFormat.jm().format(date);
 
     return Padding(
       padding: const EdgeInsets.only(top: 20),

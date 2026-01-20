@@ -1,4 +1,5 @@
 import 'package:chat_app_3/chat/bloc/chat_bloc.dart';
+import 'package:chat_app_3/chat/widgets/chat_messages.dart';
 import 'package:chat_app_3/chat/widgets/widgets.dart';
 import 'package:chat_app_3/domain/models/contact.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,14 @@ class ChatPage extends StatelessWidget {
   }
 }
 
-class ChatPageView extends StatelessWidget {
+class ChatPageView extends StatefulWidget {
   const ChatPageView({super.key});
 
+  @override
+  State<ChatPageView> createState() => _ChatPageViewState();
+}
+
+class _ChatPageViewState extends State<ChatPageView> {
   @override
   Widget build(BuildContext context) {
     final contact = ModalRoute.of(context)!.settings.arguments as Contact;
@@ -34,7 +40,7 @@ class ChatPageView extends StatelessWidget {
       body: Stack(
         children: [
           // Lista de mensajes
-
+          ChatMessages(contactId: contact.id, contactName: contact.name),
           // Widget
           ChatTextFormField(contactId: contact.id),
         ],
