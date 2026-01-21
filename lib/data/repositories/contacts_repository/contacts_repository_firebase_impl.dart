@@ -23,12 +23,13 @@ class ContactsRepositoryFirebaseImpl implements ContactsRepository {
   }
 
   @override
-  Future<void> updateUser(User user, bool status) {
+  Future<void> updateUser(User user, bool status, String? token) {
     return _firebaseDatabase.ref('contacts').child(user.uid).update({
       'name': user.displayName,
       'photoUrl': user.photoURL,
       'status': status,
       'id': user.uid,
+      'token': token,
     });
   }
 }

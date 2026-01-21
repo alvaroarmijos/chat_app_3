@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
 import 'package:chat_app_3/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
 import 'package:chat_app_3/data/repositories/contacts_repository/contacts_repository_firebase_impl.dart';
 import 'package:chat_app_3/domain/models/contact.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 part 'home_event.dart';
 part 'home_state.dart';
@@ -39,6 +39,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     if (user == null) return;
 
-    contactsRepository.updateUser(user, event.status);
+    final token = await FirebaseMessaging.instance.getToken();
+
+    contactsRepository.updateUser(user, event.status, token);
   }
 }

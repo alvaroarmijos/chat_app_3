@@ -7,6 +7,7 @@ abstract class MessagesRepository {
     String message,
     String date,
     String sentBy,
+    String sentTo,
   );
 
   // funcion para obtener los mensajes de un chat

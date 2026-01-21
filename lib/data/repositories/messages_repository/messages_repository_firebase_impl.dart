@@ -11,11 +11,13 @@ class MessagesRepositoryFirebaseImpl implements MessagesRepository {
     String message,
     String date,
     String sentBy,
+    String sentTo,
   ) {
     return _firebaseDatabase.ref('chats').child(chatId).push().set({
       'message': message,
       'messageDate': date,
       'sentBy': sentBy,
+      'sentTo': sentTo,
     });
   }
 
