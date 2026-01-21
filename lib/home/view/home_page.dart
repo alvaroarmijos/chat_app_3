@@ -1,8 +1,10 @@
 import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
 import 'package:chat_app_3/app/core/ui/ui.dart';
 import 'package:chat_app_3/app/core/widgets/chat_avatar.dart';
+import 'package:chat_app_3/app/notifications/notifications_service.dart';
 import 'package:chat_app_3/home/bloc/home_bloc.dart';
 import 'package:chat_app_3/home/widgets/chats.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,10 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc()..add(GetContactsEvent()),
-      child: HomeView(),
-    );
+    return BlocProvider(create: (context) => HomeBloc(), child: HomeView());
   }
 }
 
@@ -26,10 +25,27 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  late final HomeBloc _bloc;
+
   @override
   void initState() {
     super.initState();
-    context.read<HomeBloc>().add(UpdateUserStatus(status: true));
+    _bloc = context.read<HomeBloc>();
+
+    Future.delayed(const Duration(seconds: 1), () {
+      _bloc
+        ..add(GetContactsEvent())
+        ..add(UpdateUserStatus(status: true));
+    });
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Got a message whilst in the foreground!');
+      print('Message data: ${message.data}');
+
+      if (message.notification != null) {
+        NotificationsService().showNotification(message);
+      }
+    });
   }
 
   @override
@@ -64,7 +80,7 @@ class _HomeViewState extends State<HomeView> {
                   onTap: () =>
                       Navigator.pushNamed(context, AppNavigator.profile),
                   child: ChatAvatar(
-                    name: user?.displayName ?? '',
+                    name: user?.displayName,
                     photoUrl: user?.photoURL,
                   ),
                 ),

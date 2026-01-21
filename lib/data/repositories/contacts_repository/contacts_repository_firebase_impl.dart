@@ -12,10 +12,10 @@ class ContactsRepositoryFirebaseImpl implements ContactsRepository {
       final value = event.snapshot.value as Map?;
       return value?.values.map((element) {
             return Contact(
-              name: element['name'],
+              name: element['name'] ?? "",
               photoUrl: element['photoUrl'],
               status: element['status'],
-              id: element['id'],
+              id: element['id'] ?? "",
             );
           }).toList() ??
           [];
@@ -28,6 +28,7 @@ class ContactsRepositoryFirebaseImpl implements ContactsRepository {
       'name': user.displayName,
       'photoUrl': user.photoURL,
       'status': status,
+      'id': user.uid,
     });
   }
 }

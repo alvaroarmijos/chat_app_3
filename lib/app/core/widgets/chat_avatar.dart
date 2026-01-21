@@ -10,11 +10,12 @@ class ChatAvatar extends StatelessWidget {
   });
 
   final String? photoUrl;
-  final String name;
+  final String? name;
   final double radius;
 
   @override
   Widget build(BuildContext context) {
+    if (name == null || (name ?? "").isEmpty) return SizedBox();
     return photoUrl == null
         ? Avatar(name: name, shape: AvatarShape.circle(radius))
         : CircleAvatar(

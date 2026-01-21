@@ -1,6 +1,7 @@
 import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
 import 'package:chat_app_3/app/auth/view/auth_handler.dart';
 import 'package:chat_app_3/app/core/ui/ui.dart';
+import 'package:chat_app_3/app/notifications/notifications_service.dart';
 import 'package:chat_app_3/chat/view/chat_page.dart';
 import 'package:chat_app_3/firebase_options.dart';
 import 'package:chat_app_3/home/view/home_page.dart';
@@ -20,6 +21,7 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GoogleSignIn.instance.initialize();
+  await NotificationsService().initialize();
 
   runApp(const MyApp());
 }

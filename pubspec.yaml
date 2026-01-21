@@ -43,6 +43,8 @@ dependencies:
   firebase_database: ^12.1.1
   avatars: ^3.0.2
   intl: ^0.20.2
+  firebase_messaging: ^16.1.1
+  flutter_local_notifications: ^19.5.0
 
 dev_dependencies:
   flutter_test:

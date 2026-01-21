@@ -3,12 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepositoryFirebaseImpl implements AuthRepository {
+  final _firebaseAuth = FirebaseAuth.instance;
   @override
   Future<void> signUp(String name, String email, String password) async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+    final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
+
+    await userCredential.user?.updateDisplayName(name);
   }
 
   @override
@@ -32,16 +35,16 @@ class AuthRepositoryFirebaseImpl implements AuthRepository {
     );
 
     // Once signed in, return the UserCredential
-    await FirebaseAuth.instance.signInWithCredential(credential);
+    await _firebaseAuth.signInWithCredential(credential);
   }
 
   @override
-  Stream<User?> get currentUser => FirebaseAuth.instance.authStateChanges();
+  Stream<User?> get currentUser => _firebaseAuth.authStateChanges();
 
   @override
   Future<void> logOut() async {
     await Future.wait([
-      FirebaseAuth.instance.signOut(),
+      _firebaseAuth.signOut(),
       GoogleSignIn.instance.signOut(),
     ]);
   }
