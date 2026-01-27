@@ -1,21 +1,21 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:chat_app_3/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
-import 'package:chat_app_3/data/repositories/messages_repository/messages_repository_firebase_impl.dart';
+import 'package:chat_app_3/data/repositories/auth_repository/auth_repository.dart';
+import 'package:chat_app_3/data/repositories/messages_repository/messages_repository.dart';
 import 'package:chat_app_3/domain/models/message.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  ChatBloc() : super(ChatState()) {
+  ChatBloc(this.messagesRepository, this.authRepository) : super(ChatState()) {
     on<SendMessageEvent>(_onSendMessageEvent);
     on<GetMessagesEvent>(_onGetMessagesEvent);
   }
 
-  final messagesRepository = MessagesRepositoryFirebaseImpl();
-  final authRepository = AuthRepositoryFirebaseImpl();
+  final MessagesRepository messagesRepository;
+  final AuthRepository authRepository;
 
   FutureOr<void> _onSendMessageEvent(
     SendMessageEvent event,

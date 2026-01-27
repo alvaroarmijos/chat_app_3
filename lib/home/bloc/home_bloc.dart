@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:chat_app_3/data/repositories/auth_repository/auth_repository_firebase_impl.dart';
-import 'package:chat_app_3/data/repositories/contacts_repository/contacts_repository_firebase_impl.dart';
+import 'package:chat_app_3/data/repositories/auth_repository/auth_repository.dart';
+import 'package:chat_app_3/data/repositories/contacts_repository/contacts_repository.dart';
 import 'package:chat_app_3/domain/models/contact.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -10,14 +10,14 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  HomeBloc() : super(HomeState()) {
+  HomeBloc(this.contactsRepository, this.authRepository) : super(HomeState()) {
     on<GetContactsEvent>(_onGetContactsEvent);
     on<UpdateUserStatus>(_onUpdateUserStatus);
   }
 
   // Impl Temporal
-  final contactsRepository = ContactsRepositoryFirebaseImpl();
-  final authRepository = AuthRepositoryFirebaseImpl();
+  final ContactsRepository contactsRepository;
+  final AuthRepository authRepository;
 
   FutureOr<void> _onGetContactsEvent(
     GetContactsEvent event,

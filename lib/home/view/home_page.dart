@@ -1,7 +1,10 @@
 import 'package:chat_app_3/app/auth/bloc/auth_bloc.dart';
 import 'package:chat_app_3/app/core/ui/ui.dart';
 import 'package:chat_app_3/app/core/widgets/chat_avatar.dart';
+import 'package:chat_app_3/app/di/di.dart';
 import 'package:chat_app_3/app/notifications/notifications_service.dart';
+import 'package:chat_app_3/data/repositories/auth_repository/auth_repository.dart';
+import 'package:chat_app_3/data/repositories/contacts_repository/contacts_repository.dart';
 import 'package:chat_app_3/home/bloc/home_bloc.dart';
 import 'package:chat_app_3/home/widgets/chats.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -13,7 +16,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => HomeBloc(), child: HomeView());
+    return BlocProvider(
+      create: (context) =>
+          HomeBloc(getIt<ContactsRepository>(), getIt<AuthRepository>()),
+      child: HomeView(),
+    );
   }
 }
 
